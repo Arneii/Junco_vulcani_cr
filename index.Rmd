@@ -49,13 +49,16 @@ junco_vulcani <-
   junco_vulcani %>%
   st_join(cantones["canton"])
 ```
+<br>
 
 # Introduccion
 El junco de los paramos (*Junco vulvani*) habitan en zonas abiertas en elevaciones altas, usualmente por encima de los 3000 m. Suelen posarse sobre el suelo en pequeños arbustos, generalmente en parejas o en grupos pequeños, Su rango es muy limitado: sola en Costa Rica o en el oeste de Panama (eBird,[Junco vulcani](https://ebird.org/species/voljun1)).
 
+<br>
+
 # Tabla de registros de presencia 
 
-```{r}
+```{r tabla_registros, message=FALSE}
 # Tabla de registros de presencia
 junco_vulcani %>%
   st_drop_geometry() %>%
@@ -65,9 +68,27 @@ junco_vulcani %>%
     options = list(searchHighlight = TRUE)
   )
 ```
-
+<br>
 
 # Graficos de estacionalidad
+
+```{r grafico_estacionaidad}
+#grafico de estacionalidad por mes
+junco_vulcani %>%
+  st_drop_geometry() %>%
+  group_by(mes = format(as.Date(eventDate, "%Y-%m-%d"), "%m")) %>%
+  summarize(suma_registros = n()) %>%
+  filter(!is.na(mes))  %>%
+  plot_ly(x = ~ mes,
+          y = ~ suma_registros,
+          type = "scatter", 
+          mode = "markers",
+          fill = "tozeroy") %>%
+  layout(title = "Estacionalidad",
+         xaxis = list(title = "Mes"),
+         yaxis = list(title = "Cantidad de registros"))
+```
+<br>
 
 # Grafico de historial
 
