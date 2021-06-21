@@ -1,0 +1,19 @@
+---
+title: "El junco de los paramos (junco valcani"
+output: html_document
+```{r setup, incluide=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+#Preparativos
+
+# Introduccion
+
+# Tabla de registros de presencia 
+
+# Graficos de estacionalidad
+
+# Grafico de historial
+
+# Mapa de distribucion
